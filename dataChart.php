@@ -1,6 +1,6 @@
 <?php
 
-require_once('Controller/db.php');
+require_once('db.php');
 session_start();
 if ( $_POST['fromdate'] && $_SESSION['userId'] && $_POST['todate']){
 

@@ -1,4 +1,4 @@
-<?php require_once ('Controller/db.php'); ?> 
+<?php require_once ('db.php'); ?> 
 
 <?php require_once ('header.php'); ?> 
 

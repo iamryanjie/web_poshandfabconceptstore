@@ -1,7 +1,7 @@
 <?php
 function view_damageproduct()
 {
-	require_once ('Controller/db.php');
+	require_once ('db.php');
 	if (!$db)
 	{
 		trigger_error('Could not connect to MySQL: ' . mysqli_connect_error());
