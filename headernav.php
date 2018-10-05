@@ -174,10 +174,10 @@
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Middle Name</label>
                     <input type="text" id="pro-mname" class="form-control" value="<?php echo $_SESSION['userMiddlename'] ?>">
                 </div>
-                <!-- <div class="md-form mb-5">
+                <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
-                    <input type="text" id="pro-email" class="form-control">
-                </div> -->
+                    <input type="text" id="pro-email" class="form-control" value="<?php echo $_SESSION['userEmail']?>">
+                </div>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Address</label>
                     <input type="text" id="pro-address" class="form-control" value="<?php echo $_SESSION['userAddress']?>">
@@ -188,9 +188,20 @@
                 </div><br/>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Gender</label>
-                    <select class="pro-gender">
-                    	<option value="Female">FEMALE</option>
-                    	<option value="Male">MALE</option>
+                    <select id="pro-gender">
+                    	<?php
+                    		$options = array( "Male", "Female" );
+
+							$output = '';
+							for( $i=0; $i<count($options); $i++ ) {
+							  $output .= '<option '
+							  			 . 'value="' . $options[$i] . '"'
+							             . ( $_SESSION['userGender'] == $options[$i] ? 'selected="selected"' : '' ) . '>' 
+							             . $options[$i] 
+							             . '</option>';
+							}
+							echo $output;
+                    	?>
                     </select>
                 </div>
 

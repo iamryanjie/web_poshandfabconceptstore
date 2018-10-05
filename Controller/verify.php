@@ -26,7 +26,7 @@ if($rowcount == 1)
 	$_SESSION['userAddress']  = $row['col_address'];
 	$_SESSION['userGender']  = $row['col_gender'];
 	$_SESSION['userConnum']  = $row['col_contactnum'];
-	
+	$_SESSION['userEmail']  = $row['col_email'];
 
 	header('Location:../index.php');  
 }
