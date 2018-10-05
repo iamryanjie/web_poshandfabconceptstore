@@ -2,8 +2,9 @@
 
 require_once('db.php');
 session_start();
+//echo $_SESSION['userId'];
 if ( $_POST['fromdate'] && $_SESSION['userId'] && $_POST['todate']){
-
+//echo $_SESSION['userId]];
 	// convert string to date
 	$todate = $_POST["todate"];
 	$fromdate = strtotime($_POST["fromdate"]);
@@ -27,7 +28,7 @@ if ( $_POST['fromdate'] && $_SESSION['userId'] && $_POST['todate']){
 	
 
 	//query to get data from the table
-	$query = sprintf("SELECT col_dateofpurchase as date,col_totalprice as sales FROM tbl_transaction GROUP by col_dateofpurchase ORDER BY col_dateofpurchase ASC");
+	$query = sprintf("SELECT col_dateofpurchase as date,col_totalprice as sales, col_useraccountsid FROM tbl_transaction GROUP by col_dateofpurchase ORDER BY col_dateofpurchase ASC");
 	$data = array();
 
 	//execute query
