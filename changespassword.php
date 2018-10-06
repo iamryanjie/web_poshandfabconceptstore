@@ -1,5 +1,5 @@
-<?php require_once ('db.php'); ?>
 <?php
+require("db.php");
 
 session_start();
 // Get values paste from form in login.php file

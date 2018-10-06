@@ -43,7 +43,7 @@
 											<th>Middle Name</th>
 											 
 											 <?php
-									require 'Controller/bpquery.php'
+									require 'bpquery.php'
 									?>
                                         
                    

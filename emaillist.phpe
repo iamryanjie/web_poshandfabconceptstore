@@ -70,22 +70,13 @@ while ($uemail = mysqli_fetch_assoc($res)) {
 				$message .= '</body>';
 				$message .= '</html>';
 
+		if($uemail['col_email']){
 			try{
 			mail($uemail['col_email'], 'Sales Notification', $message, $headers);
 			} catch (Exception $e) {
 			        echo $e;
 			}
-
-try{
-                        mail('ryanjiesalva@gmail.com', 'Sales Notification', $message, $headers);
-                        } catch (Exception $e) {
-                                echo $e;
-                        }
+		}
 }
-try{
-                        mail('jurixcahimat@gmail.com', 'Sales Notification', $message, $headers);
-                        } catch (Exception $e) {
-                                echo $e;
-                        }
 ?>
 

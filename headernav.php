@@ -174,10 +174,10 @@
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Middle Name</label>
                     <input type="text" id="pro-mname" class="form-control" value="<?php echo $_SESSION['userMiddlename'] ?>">
                 </div>
-                <div class="md-form mb-5">
+                <!--<div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
                     <input type="text" id="pro-email" class="form-control" value="<?php echo $_SESSION['userEmail']?>">
-                </div>
+                </div>-->
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Address</label>
                     <input type="text" id="pro-address" class="form-control" value="<?php echo $_SESSION['userAddress']?>">

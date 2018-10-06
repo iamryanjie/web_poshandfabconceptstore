@@ -1,3 +1,4 @@
+
 <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -55,15 +56,15 @@
 				var passdata = {'cpassword':$("#newpass").val()}
 				$.ajax({  
 				    type: 'POST',  
-				    url: "Controller/changepassword.php",
+				    url: "changepassword.php",
 				    data: {cpassword:$("#newpass").val()},
 				    success: function(response) {
 				        $("#newpass").val("");
 						$("#conpass").val("");
-				        if(response == '1'){
+				        if(response == '1' || response == 1){
 							$(".errormessage").html("<span style='color:green; font-weight:strong;'>Success, Password updated!</span>");        	
 				        }else{
-				        	$(".errormessage").html("<span style='color:red; font-weight:strong;'>Error, Contact Administrator!</span>");
+				        	$(".errormessage").html("<span style='color:red; font-weight:strong;'>Error, Contact Administrator! </span>");
 				        }
 				    }
 				});
@@ -75,7 +76,8 @@
 		// for profile update
 		$(".btn-udpateprofile").click(function(){
 			console.log($("#pro-gender").val());
-			if($("#newpass").val() == $("#conpass").val()){
+			if($("#pro-lname").val() && $("#pro-fname").val()){
+				
 				var profiledata = {
 					"pro-fname": $("#pro-fname").val(),
 					"pro-lname": $("#pro-lname").val(),
@@ -85,21 +87,27 @@
 					"pro-gender": $("#pro-gender").val(),
 					"pro-email": $("#pro-email").val()
 				}
+				
 				$.ajax({  
 				    type: 'POST',  
-				    url: "Controller/updateprofile.php",
+				    url: "updateprofile.php",
 				    data: profiledata,
 				    success: function(response) {
-				    	if(response == '1'){
+				    	if(response == '1' || response == 1){
 							$(".errormessage").html("<span style='color:green; font-weight:strong;'>Success, Profile updated!</span>");        	
 				        }else{
 				        	$(".errormessage").html("<span style='color:red; font-weight:strong;'>Error, Contact Administrator!"+response+" </span>");
 				        }
-				    }
+				    },
+				error: function(request, error){
+				console.log(arguments);
+}
 				});
 				
 						
-			}
+			}else{
+		alert("First Name and Last Name must not empty!");
+}
 		}); 
 
       });
@@ -123,8 +131,12 @@
          	var todate = $("#todate").val();
          	console.log($("#fromdate").val())
          	console.log($("#todate").val())
-         	showbargraph(fromdate, todate);
-
+         	if(new Date(fromdate) > new Date(todate))
+			{   
+			 alert('End date should be greater than Start date');
+			}else{
+				showbargraph(fromdate, todate);	
+			}
 			});
 		});
 		
