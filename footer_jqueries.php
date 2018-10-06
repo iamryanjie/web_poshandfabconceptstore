@@ -73,7 +73,8 @@
 		});
 
 		// for profile update
-		$(".udpateprofile").click(function(){
+		$(".btn-udpateprofile").click(function(){
+			console.log($("#pro-gender").val());
 			if($("#newpass").val() == $("#conpass").val()){
 				var profiledata = {
 					"pro-fname": $("#pro-fname").val(),
@@ -82,7 +83,7 @@
 					"pro-address": $("#pro-address").val(),
 					"pro-contact": $("#pro-contact").val(),
 					"pro-gender": $("#pro-gender").val(),
-					"pro-email": $("#pro-email").val(),
+					"pro-email": $("#pro-email").val()
 				}
 				$.ajax({  
 				    type: 'POST',  
@@ -90,9 +91,9 @@
 				    data: profiledata,
 				    success: function(response) {
 				    	if(response == '1'){
-							$(".errormessage").html("<span style='color:green; font-weight:strong;'>Success, Password updated!</span>");        	
+							$(".errormessage").html("<span style='color:green; font-weight:strong;'>Success, Profile updated!</span>");        	
 				        }else{
-				        	$(".errormessage").html("<span style='color:red; font-weight:strong;'>Error, Contact Administrator!</span>");
+				        	$(".errormessage").html("<span style='color:red; font-weight:strong;'>Error, Contact Administrator!"+response+" </span>");
 				        }
 				    }
 				});
