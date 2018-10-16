@@ -184,7 +184,7 @@
                 </div>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Contact Number</label>
-                    <input type="text" id="pro-contact" class="form-control" value="<?php echo $_SESSION['userConnum']?>">
+                    <input id="pro-contact" type="number" min="3" max="20" class="form-control" value="<?php echo $_SESSION['userConnum']?>">
                 </div><br/>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">Gender</label>

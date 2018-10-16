@@ -24,7 +24,62 @@
 
     <!-- FOR PROFILE TAB HEREEEE ====== -->
     <script>
+        // sales tab date range
+        $(function () {
+			$(".static-data").show();
 
+        	function numOnly(selector){
+			  selector.value = selector.value.replace(/[^0-9]/g,'');
+			}
+
+
+	        $(".btn-datefilter").click(function(){
+	        	var begindate = $("#begindate").val();
+	         	var stopdate = $("#stopdate").val();
+	         	console.log($("#begindate").val())
+	         	console.log($("#stopdate").val())
+	         	if(new Date(begindate) > new Date(stopdate)){   
+					alert('End date should be greater than Start date');
+				}else{
+					$(".static-data").hide();
+					$.ajax({  
+					    type: 'POST',  
+					    url: "salesquery.php",
+					    data: {begindate:$("#begindate").val(), stopdate: $("#stopdate").val()},
+					    success: function(response) {
+					        var valdata = $.parseJSON(response);
+					        console.log(valdata)
+
+						$(".static-datas").remove();
+					        $('.listofdata').remove();
+					        $('.dynamic-data').append('<tbody class="static-datas"><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Date Purchased</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Transaction Code</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Product Code</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Product Name</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Product Price</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">Number of Product Sold</th><th style="border: 1px solid #f4f4f4;line-height: 2; padding: 8px;">SubTotal</th></tbody><tbody class="listofdata"></tbody>');
+ 							if( valdata.length !=0){
+					        for(var i in valdata) {
+								var tcode = valdata[i]['col_transactioncode'];
+                              	var datepurchased = valdata[i]['col_dateofpurchase'];
+                              	var pcode = valdata[i]['col_productcode'];
+                            	var productname = valdata[i]['col_productname'];
+                            	var price = valdata[i]['col_productprice']; 
+                            	var quantity = valdata[i]['col_quantitybought'];
+                            	var subtotal = valdata[i]['col_subtotal'];
+
+                            	var sdata = '<tr class="" style="border: 1px solid #f4f4f4;"><td style="padding:8px; border: 1px solid #f4f4f4;">'+datepurchased+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+tcode+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+pcode+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+productname+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+price+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+quantity+'</td><td style="padding:8px; border: 1px solid #f4f4f4;">'+subtotal+'</td></tr>';
+							
+					        	$('.listofdata').append(sdata);
+					
+							}
+					}else{
+var sdata = '<h3 class="static-datas">No data found.</h3>';
+$('.dynamic-data').append(sdata);
+}
+
+
+
+					    }
+					});
+				}
+			});
+		});
     	
       $(function (){
       	showbargraph();
@@ -76,7 +131,7 @@
 		// for profile update
 		$(".btn-udpateprofile").click(function(){
 			console.log($("#pro-gender").val());
-			if($("#pro-lname").val() && $("#pro-fname").val()){
+			if($.trim($("#pro-lname").val()) && $.trim($("#pro-fname").val()) && $.trim($("#pro-mname").val()) && $.trim($("#pro-address").val()) && $.trim($("#pro-contact").val()) ){
 				
 				var profiledata = {
 					"pro-fname": $("#pro-fname").val(),
@@ -106,7 +161,7 @@
 				
 						
 			}else{
-		alert("First Name and Last Name must not empty!");
+		alert("Please fill all fields!");
 }
 		}); 
 
@@ -317,3 +372,4 @@
     	}
     }
     </script>
+

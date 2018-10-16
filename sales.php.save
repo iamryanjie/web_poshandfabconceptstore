@@ -20,7 +20,7 @@
                     <span class="info-box-text">Number of Transactions</span>
                     <span class="info-box-number"> <?php
                       if(isset($_SESSION['userId']) && $_SESSION['usertype'] != '1'){
-                          $result=mysqli_query($db, "SELECT COUNT(col_transactioncode) as sales from tbl_order o inner join tbl_product p on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid inner join tbl_brandpartner b on b.col_useraccountsid = p.col_useraccountsid where b.col_useraccountsid = '".$_SESSION['userId']."'");
+                          $result=mysqli_query($db, "SELECT Count(x.col_transactioncode) as sales FROM tbl_product p inner join tbl_order o on o.col_productid = p.col_productid inner join tbl_transaction x where p.col_useraccountsid = '".$_SESSION['userId']."'");
                       }else{
                         $result=mysqli_query($db, 'SELECT Count(col_transactioncode) as sales FROM tbl_transaction');
                       }
@@ -42,7 +42,7 @@
                       <?php
                         
                         if(isset($_SESSION['userId']) && $_SESSION['usertype'] != '1'){
-                          $result=mysqli_query($db, "SELECT sum(col_subtotal) as value FROM tbl_order o inner join tbl_product p on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid inner join tbl_brandpartner b on b.col_useraccountsid = p.col_useraccountsid where b.col_useraccountsid = '".$_SESSION['userId']."'");
+                          $result=mysqli_query($db, "SELECT sum(x.col_totalprice) as value FROM tbl_product p inner join tbl_order o on o.col_productid = p.co");
                         }else{
                           $result=mysqli_query($db, 'SELECT SUM(col_totalprice) as value FROM tbl_transaction');
                         }
@@ -65,7 +65,7 @@
                                 <span class="info-box-number"> <?php
                                   
                                   if(isset($_SESSION['userId']) && $_SESSION['usertype'] != '1'){
-                                    $result=mysqli_query($db, "SELECT COUNT(col_orderstatus) as sales from tbl_order o inner join tbl_product p on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid inner join tbl_brandpartner b on b.col_useraccountsid = p.col_useraccountsid where b.col_useraccountsid = '".$_SESSION['userId']."' and col_orderstatus = 'sales'");
+                                    $result=mysqli_query($db, "SELECT Count(o.col_orderstatus) as sales FROM tbl_product p inner join tbl_order o on o.col_productid = p.col_productid where o.col_orderstatus='Sales' AND p.col_useraccountsid = '".$_SESSION['userId']."'");
                                   }else{
                                     $result=mysqli_query($db, 'SELECT Count(col_orderstatus) as sales FROM tbl_order where col_orderstatus="Sales"');
                                   }
@@ -85,7 +85,7 @@
                     <span class="info-box-number"> <?php
                       
                       if(isset($_SESSION['userId']) && $_SESSION['usertype'] != '1'){
-                        $result=mysqli_query($db, "SELECT COUNT(col_orderstatus) as void from tbl_order o inner join tbl_product p on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid inner join tbl_brandpartner b on b.col_useraccountsid = p.col_useraccountsid where b.col_useraccountsid = '".$_SESSION['userId']."' and col_orderstatus = 'void'" );
+                        $result=mysqli_query($db, "SELECT Count(o.col_orderstatus) as void FROM tbl_product p inner join tbl_order o on o.col_productid = p.col_productid where o.col_orderstatus='Void' AND p.col_useraccountsid = '".$_SESSION['userId']."'" );
                       }else{
                         $result=mysqli_query($db, 'SELECT Count(col_orderstatus) as void from tbl_order where col_orderstatus="Void"');
                       }
@@ -147,7 +147,7 @@
                     <tbody class="static-data">
 
                               <?php
-            			$query = "SELECT * from tbl_product p inner join tbl_order o on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid";
+            									$query = "SELECT * from tbl_product p inner join tbl_order o on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid where p.col_useraccountsid = '".$_SESSION['userId']."'";
                               
                               if(isset($_SESSION['userId']) && $_SESSION['usertype'] != '1'){
                                 $query = "SELECT * from tbl_product p inner join tbl_order o on o.col_productid = p.col_productid inner join tbl_transaction t on o.col_transactionid = t.col_transactionid where p.col_useraccountsid = '".$_SESSION['userId']."'" ;

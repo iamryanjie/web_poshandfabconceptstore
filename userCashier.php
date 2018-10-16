@@ -37,7 +37,7 @@
 				<tr>
                 <tbody>
 											<th>Username</th>
-											<th>Password</th>  
+											  
                       <th>Last Name</th>
 											<th>First Name</th>
 											<th>Middle Name</th>

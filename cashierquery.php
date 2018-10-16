@@ -16,7 +16,6 @@ function view_user()
 			
 			echo '<tr class="odd gradeX">
 					<td>'.$Uname.'</td>
-					<td>'.$Pass.'</td>
 					<td>'.$Lname.'</td>
 					<td>'.$Fname.'</td>
 					<td>'.$Mname.'</td>

@@ -7,7 +7,7 @@
 
         <section class="content-header">
          <h1>
-              <h1> Brand Partner Table </h1>
+              <h1> Cashier Table </h1>
           </h1>
          
         </section>
@@ -20,9 +20,9 @@
                 <div class="box-body">
 
                     <div class="input-group" style="width: 300px;" align="right" >
-                      <input type="text" name="table_search" id="searchInputBrandpartners" onkeyup="searchFuncBrandpartners()" class="form-control input-sm pull-right" placeholder="Search. . . .">
+                      <input type="text" name="table_search" id="searchInput" onkeyup="searchFunc()" class="form-control input-sm pull-right" placeholder="Search. . . .">
                       <div class="input-group-btn">
-                        <button class="btn btn-sm btn-danger">Go</button>
+                        <button class="btn btn-sm btn-danger" >Go</button>
                       </div>	
                     </div>
 					
@@ -33,17 +33,16 @@
 			<input type="date" name="" value="">
                </div-->
 			   </div>
-			   <table id="brandPartnerTable" class="table table-bordered table-hover">
+			   <table id="cashierTable" class="table table-bordered table-hover">
 				<tr>
                 <tbody>
-											<th>Username</th>
-										  
+											<th>Username</th>  
                       <th>Last Name</th>
 											<th>First Name</th>
 											<th>Middle Name</th>
 											 
 											 <?php
-									require 'bpquery.php'
+									require 'cashierquery.php'
 									?>
                                         
                    
@@ -55,7 +54,7 @@
                                         
                                     </tbody>
 									</tr>
-									</table>
+				</table>
 
 
                 </div><!-- /.box-body -->
@@ -69,7 +68,7 @@
      
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-        <?php include 'footer_jqueries.php'; ?>
-    
+
+        <?php include 'footer_jqueries.php'; ?>    
   </body>
 </html>
